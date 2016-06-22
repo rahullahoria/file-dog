@@ -29,7 +29,7 @@ function getFile($username, $fileId){
         if (file_exists($root.$file[0]->location)) {
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename="'.basename($root.$file[0]->location).'"');
+            header('Content-Disposition: attachment; filename="'.basename($root.$file[0]->file_name).'"');
             header('Expires: 0');
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
