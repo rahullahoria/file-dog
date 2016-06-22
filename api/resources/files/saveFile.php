@@ -11,7 +11,7 @@ function saveFile($username){
 
     $request = \Slim\Slim::getInstance()->request();
 
-    $file = json_decode("{}");
+    $file = json_decode("{'file_name':'','size':''}");
     $file->file_name = $_FILES["file"]["name"];
     $file->size = $_FILES['file']['size']/MB;
 
