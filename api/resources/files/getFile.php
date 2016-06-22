@@ -21,19 +21,20 @@ function getFile($username, $fileId){
         $stmt->execute();
         $file = $stmt->fetchAll(PDO::FETCH_OBJ);
 
+        $root = "/var/www/html/shatkonlabs/prod/file-dog-files/";
 
 
         $db = null;
 
-        if (file_exists($file[0]->location)) {
+        if (file_exists($root.$file[0]->location)) {
             header('Content-Description: File Transfer');
             header('Content-Type: application/octet-stream');
-            header('Content-Disposition: attachment; filename="'.basename($file[0]->location).'"');
+            header('Content-Disposition: attachment; filename="'.basename($root.$file[0]->location).'"');
             header('Expires: 0');
             header('Cache-Control: must-revalidate');
             header('Pragma: public');
-            header('Content-Length: ' . filesize($file[0]->location));
-            readfile($file[0]->location);
+            header('Content-Length: ' . filesize($root.$file[0]->location));
+            readfile($root.$file[0]->location);
             exit;
         }
 
