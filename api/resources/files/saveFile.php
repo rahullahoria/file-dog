@@ -29,13 +29,15 @@ function saveFile($username){
 
         saveFile1($filePath);
 
+        $size = $_FILES['fileToUpload']['size']/MB;
+
         $db = getDB();
         $stmt = $db->prepare($sql);
 
-        $stmt->bindParam("file_name", $file->file_name);
+        $stmt->bindParam("file_name", $_FILES["fileToUpload"]["name"]);
         $stmt->bindParam("username", $username);
         $stmt->bindParam("location", $filePath);
-        $stmt->bindParam("size", $file->size);
+        $stmt->bindParam("size", $size);
 
 
         $stmt->execute();
