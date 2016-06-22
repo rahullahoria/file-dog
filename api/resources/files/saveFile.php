@@ -12,6 +12,7 @@ function saveFile($username){
     $request = \Slim\Slim::getInstance()->request();
 
     $file = json_decode("{}");
+    var_dump($file);die();
 
 
 
@@ -20,7 +21,7 @@ function saveFile($username){
 
     try {
 
-        $filePath = checkNCreateFolder($username, date("Y-m-d_h:i:sa") ) . "/" . date("Y-m-d_h:i:sa") . "_" . $_FILES["file"]["name"];
+        $filePath = checkNCreateFolder($username, date("Y-m-d") ) . "/" . date("h:i:sa") . "_" . $_FILES["file"]["name"];
 
         saveFile1($filePath);
 
