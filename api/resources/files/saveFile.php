@@ -12,9 +12,9 @@ function saveFile($username){
     $request = \Slim\Slim::getInstance()->request();
 
     $file = json_decode("{'file_name':'','size':''}");
-    var_dump($_FILES);die();
-    $file->file_name = $_FILES["file"]["name"];
-    $file->size = $_FILES['file']['size']/MB;
+    //var_dump($_FILES);die();
+    $file->file_name = $_FILES["fileToUpload"]["name"];
+    $file->size = $_FILES['fileToUpload']['size']/MB;
 
 
 
@@ -25,7 +25,7 @@ function saveFile($username){
 
     try {
 
-        $filePath = checkNCreateFolder($username, date("Y-m-d") ) . "/" . date("h:i:sa") . "_" . $_FILES["file"]["name"];
+        $filePath = checkNCreateFolder($username, date("Y-m-d") ) . "/" . date("h:i:sa") . "_" . $_FILES["fileToUpload"]["name"];
 
         saveFile1($filePath);
 
@@ -82,7 +82,7 @@ function saveFile1($filePath){
         //echo $_FILES["file"]["name"] . " already exists. ";
     } else {
 
-        move_uploaded_file($_FILES["file"]["tmp_name"], $root . $filePath);
+        move_uploaded_file($_FILES["fileToUpload"]["tmp_name"], $root . $filePath);
 
     }
 }
