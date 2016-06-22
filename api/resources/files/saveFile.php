@@ -12,9 +12,9 @@ function saveFile($username){
     $request = \Slim\Slim::getInstance()->request();
 
     $file = json_decode("{'file_name':'','size':''}");
-    var_dump($_FILES["fileToUpload"]["name"]);die();
-    $file->file_name = $_FILES["fileToUpload"]["name"];
-    $file->size = $_FILES['fileToUpload']['size']/MB;
+    //var_dump($_FILES["fileToUpload"]["name"]);die();
+    //$file->file_name = $_FILES["fileToUpload"]["name"];
+    //$file->size = $_FILES['fileToUpload']['size']/MB;
 
 
 
@@ -40,12 +40,12 @@ function saveFile($username){
 
         $stmt->execute();
 
-        $file->id = $db->lastInsertId();
+        $id = $db->lastInsertId();
 
 
         $db = null;
 
-        echo '{"file": ' . json_encode($file) . '}';
+        echo '{"file": { "id":"' . $id . '"}}';
 
 
     } catch (PDOException $e) {
