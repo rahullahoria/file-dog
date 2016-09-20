@@ -36,6 +36,18 @@ function getFile($username, $fileId){
             header('Content-Length: ' . filesize($root.$file[0]->location));
             readfile($root.$file[0]->location);
             exit;
+        } else {
+            $defFile = "/var/www/html/shatkonlabs/prod/file-dog/web-site/logo.jpg";
+            header('Content-Description: File Transfer');
+            header('Content-Type: application/octet-stream');
+            header('Content-Disposition: attachment; filename="'.basename($defFile).'"');
+            header('Expires: 0');
+            header('Cache-Control: must-revalidate');
+            header('Pragma: public');
+            header('Content-Length: ' . filesize($defFile));
+            readfile($defFile);
+            exit;
+
         }
 
 
